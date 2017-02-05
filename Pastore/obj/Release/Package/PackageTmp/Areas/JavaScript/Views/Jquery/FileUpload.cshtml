@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "FileUpload";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+    
+@using (Html.BeginForm("FileUploadEdit", "Jquery",FormMethod.Post,new { enctype = "multipart/form-data" } ))
+{
+    <input type="file" name="files[]" multiple/>
+    <button id="submitButtonId" type="submit">Upload</button>
+}
+<script>
+    $('input[type="file"]').uploadFile();
+</script>

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ArticleViewModel>
+@{
+    ViewBag.Title = "Admin-Articles";
+    var isPartial = ViewBag.isPartial ?? false;
+    Layout = !isPartial ? "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml" : null;
+}
+
+<div class="wall">
+    @Html.ActionLink("Add new article", "EditArticle", "Admin",
+        new { area = "Admin" , id = 0 } , new { @class = "btn_blue" })
+</div>
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th class="col-xs-1">@("Id")</th>
+            <th class="col-xs-5">@("Name")</th>
+            <th class="col-xs-2">@("Created")</th>
+            <th class="col-xs-2">@("Updated")</th>
+            <th class="col-xs-2">@("Delete")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var article in Model)
+            {
+                @ArticleRow(article);
+            }
+        }
+        else
+        {
+            <tr><td class="cell_centered" colspan="4">@("Articles doesnt exist")</td></tr>
+        }
+    </tbody>
+</table>
+
+@helper ArticleRow(ArticleViewModel article)
+{
+    <tr class="row">
+        <td class="col-xs-1">@article.Id</td>
+        <td class="col-xs-5">@Html.ActionLink(article.ArticleName, "EditArticle", "Admin", new { area = "Admin", id = article.Id },new { } )</td>
+        <td class="col-xs-2">@article.DateCreated</td>
+        <td class="col-xs-2">@article.DateUpdated</td>
+        <td class="col-xs-2">
+            @Ajax.ActionLink("Delete", "DeleteArticle", "Admin", new { id = article.Id }, new AjaxOptions() { UpdateTargetId = "AdminWrapper" }, new { @class = "btn_red" })
+        </td>
+    </tr>
+}

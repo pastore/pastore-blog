@@ -1,0 +1,26 @@
+﻿<template id="ToggleButton">
+    <label>
+        <input type="checkbox"  />
+        <span class="icon"></span>
+        <span class="title"></span>
+    </label>
+</template>
+<script>
+    (function() {
+        'use strict';
+        var toggleButtonOptions = {
+        
+        },
+        componentDocument = document.currentScript.ownerDocument, 
+        componentTemplate = componentDocument.querySelector("#ToggleButton");
+        window.toggleButton = class toggleButton extends HTMLElement {
+            constructor() {
+                var shadowRoot;
+                super();
+                shadowRoot = this.attachShadow({
+                    mode:'open'
+                });
+            }
+        };
+    })();
+</script>

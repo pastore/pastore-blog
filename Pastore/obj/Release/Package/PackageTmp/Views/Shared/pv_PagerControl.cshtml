@@ -1,0 +1,59 @@
+﻿@{
+    var countPages = (double)ViewData["countPages"];
+    var currentPage = (int)ViewData["currentPage"];
+    var countVisiblePagerButtons = (int)ViewData["countVisiblePagerButtons"];
+    var routeName = ViewData["nameRoute"] as string;
+    var routeValues = ViewData["routeValues"] as RouteValueDictionary;
+
+    countVisiblePagerButtons = countVisiblePagerButtons <= (int) countPages ? countVisiblePagerButtons : (int)countPages;
+    var countLinks = currentPage <= countVisiblePagerButtons ? Enumerable.Range(1,countVisiblePagerButtons)
+: Enumerable.Range(currentPage - (countVisiblePagerButtons/2), currentPage + (countVisiblePagerButtons/2 - (countVisiblePagerButtons % 2 == 0 ? 1 : 0)));
+
+    var isFirstCurrent = currentPage == 1;
+    var isLastCurrent = currentPage == (int)countPages;
+    var firstRouteValues = new RouteValueDictionary(routeValues) {{"page", 1}};
+    var firstLink = Url.RouteUrl(routeName, firstRouteValues);
+
+    var lastRouteValues = new RouteValueDictionary(routeValues) {{"page", countPages}};
+    var lastLink = Url.RouteUrl(routeName, lastRouteValues);
+
+    var prevRouteValues = new RouteValueDictionary(routeValues) {{"page", currentPage - 1}};
+    var prevLink = Url.RouteUrl(routeName, prevRouteValues);
+
+    var nextRouteValues = new RouteValueDictionary(routeValues) {{"page", currentPage + 1}};
+    var nextLink = Url.RouteUrl(routeName, nextRouteValues);
+
+}
+
+@if (countPages > 1)
+{
+    <ul  class="pager">
+        <li class="first @(isFirstCurrent ? "disabled" : string.Empty)">
+            <a href="@(isFirstCurrent ? "javascript:void(0)" : firstLink)">
+                <i class="fa fa-angle-double-left"></i>
+            </a>
+        </li>
+        <li class="prev @(isFirstCurrent ? "disabled" : string.Empty)">
+            <a href="@(isFirstCurrent ? "javascript:void(0)" : prevLink)">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        </li>
+        @foreach(var link in countLinks)
+        {
+            var tempRouteValues = new RouteValueDictionary(routeValues) { {"page",link} };
+            <li class="@(currentPage == link ? "current" : string.Empty)"> 
+                <a href="@(currentPage == link ? "javascript:void(0)" : Url.RouteUrl(routeName,tempRouteValues))" >@(link)</a>
+            </li>
+        }
+        <li class="prev @(isLastCurrent ? "disabled" : string.Empty)">
+            <a href="@(isLastCurrent ? "javascript:void(0)" : nextLink)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+        <li class="last @(isLastCurrent ? "disabled" : string.Empty)">
+            <a href="@(isLastCurrent ? "javascript:void(0)" : lastLink)">
+                <i class="fa fa-angle-double-right"></i>
+            </a>
+        </li>
+    </ul>
+}

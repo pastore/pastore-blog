@@ -1,0 +1,61 @@
+﻿@using Pastore.Model.Models
+@using Pastore.Service.ViewModel
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    var term = ViewBag.term;
+}
+@model GlobalSearchResultModel
+
+<h2>Result search for "@(term)" : @(Model.Categories.Count() + Model.Articles.Count())</h2>
+
+<div class="g_search margin-bottom-30">
+    <div class="g_search__header">@("Categories")</div>
+    <div class="g_search__body">
+        @if (Model.Categories.Any())
+        {
+            foreach (var item in Model.Categories)
+            {
+                <a class="g_search__item search_item_category" href="@(Url.RouteUrl("Articles_ByCategories", new {category = item.Name}))">
+                    @(item.Name)
+                </a>
+            }
+        }
+        else
+        {
+            <div class="search_empty">@("The categories are missing")</div>
+        }
+    </div>
+</div>
+
+<div class="g_search">
+    <div class="g_search__header">@("Articles")</div>
+    <div class="g_search__body">
+        @if (Model.Articles.Any())
+        {
+            foreach (var item in Model.Articles)
+            {
+                var imgSrc = item.ArticleFiles.Any(x => x.ArticleFileType == ArticleFileType.TeaserImage)
+                ? "/images/" + item.ArticleFiles.First(x => x.ArticleFileType == ArticleFileType.TeaserImage).FileName
+                : "https://placeimg.com/640/260/any";
+                <div class="g_search__item search_item_article">
+                    <img class="search_item_article__image" src="@(imgSrc)" alt="" />
+                    <div>
+                        <a class="search_item_article__name" href="@(Url.Action("ArticleView","Home",new { articleId = item.Id}))">@(item.ArticleName)</a>
+                        <div class="search_item_article__desc">@(item.ArticleDescription)</div>
+                        <div>
+                            @item.DateCreated.ToShortDateString()
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="search_empty">@("The articlas are missing")</div>
+        }
+    </div>
+</div>
+
+
+

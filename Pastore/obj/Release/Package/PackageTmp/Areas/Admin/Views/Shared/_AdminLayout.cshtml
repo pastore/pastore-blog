@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+@section MainStyles{
+    @Styles.Render("~/Content/Root")
+    @Styles.Render("~/Content/Admin")
+}
+@{ Html.RenderPartial("pv_AdminHeader"); }
+<div class="row">
+    <div class="col-xs-2">
+        @{ Html.RenderPartial("pv_SidePanel"); }
+    </div>
+    <div class="col-xs-10">
+        <div id="AdminWrapper">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+
+@section ExtraScripts{
+    @Scripts.Render("~/Scripts/jqueryval")
+    @Scripts.Render("~/Scripts/Knockout")
+    @Scripts.Render("~/Scripts/Root")
+    <script type="text/javascript">
+        $.validator.setDefaults({
+            ignore: ""
+        });
+    </script>
+}

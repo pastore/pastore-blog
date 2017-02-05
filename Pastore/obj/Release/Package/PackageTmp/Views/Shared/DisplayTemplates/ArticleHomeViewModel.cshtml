@@ -1,0 +1,43 @@
+﻿@using Pastore.Model.Models
+@using Pastore.ViewModels
+@model ArticleHomeViewModel
+@{
+    var imgSrc = Model.ArticleFiles.Any(x => x.ArticleFileType == ArticleFileType.TeaserImage)
+        ? "/images/" + Model.ArticleFiles.First(x => x.ArticleFileType == ArticleFileType.TeaserImage).FileName 
+        : "https://placeimg.com/640/260/any";
+}
+<div class="card">
+    <div class="card__view view_card">
+        <img class="view_card__image img-responsive" src="@(imgSrc)" alt="" />
+    </div>
+    <h2 class="card__name">
+        <a href="@(Url.Action("ArticleView","Home",new { articleId = Model.Id}))">@Model.ArticleName</a>
+    </h2>
+    <div class="card__options options_card">
+        <div class="options_card__item">
+            <i class="fa fa-clock-o options_card__icon"></i>
+            <span>@Model.DateCreated.ToShortDateString()</span>
+        </div>
+        <div class="options_card__item">
+            <i class="fa fa-clock-o options_card__icon"></i>
+            <span>@Model.DateUpdated.GetValueOrDefault(DateTime.Now).ToShortDateString()</span>
+        </div>
+        <div class="options_card__item">
+            <i class="fa fa-folder-open-o options_card__icon"></i>
+            <ul class="options_card_categories categories_list">
+                @foreach (var cat in Model.Categories.Take(2))
+                {
+                    <li>
+                        <a class="categories_list__link" href="@(Url.RouteUrl("Articles_ByCategories",new { category = cat.Name }))">@cat.Name @(cat.Id != Model.Categories.Last().Id ? "," : string.Empty)</a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="options_card__item">
+            <i class="fa fa-user options_card__icon"></i>
+            <span>@Model.User.UserName</span>
+        </div>
+    </div>
+    <div class="card__description">@Model.ArticleDescription</div>
+    <a href="@(Url.Action("ArticleView","Home",new { articleId = Model.Id}))" class="btn_blue">Read more</a>
+</div>

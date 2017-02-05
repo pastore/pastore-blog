@@ -1,0 +1,30 @@
+﻿@import "../Utils/mixins.less";
+.btn{
+    .base_button();
+}
+.btn_blue{
+    &:extend(.btn);
+    .background_button(@color-turquoise,@color-white);
+}
+.btn_gray{
+    &:extend(.btn);
+    .background_button(@color-gray,@color-black);
+}
+.btn_red{
+    &:extend(.btn);
+    .background_button(@color-roofterracotta,@color-white);
+}
+
+//humburgers
+.humburger{
+
+}
+.humburger__inner{
+    position: absolute;
+    width: 40px;
+    height: 4px;
+    transition-timing-function: ease;
+    transition-duration: .35s;
+    transition-property: transform;
+    border-radius: 4px;
+}

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Animation";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<div class="slider3d_wrapper">
+    <a href="javascript:void(0)" class="prevSlide"><img src="https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_left-16.png" title="Back" width="16"></a>
+    <div class="slides">
+        <div style="opacity:0.7;background-color:blue"></div>
+        <div style="opacity:0.7;background-color:red"></div>
+        <div style="opacity:0.7;background-color:yellow"></div>
+        <div style="opacity:0.7;background-color:green"></div>
+        <div style="opacity:0.7;background-color:blueviolet"></div>
+    </div>
+    <a href="javascript:void(0)" class="nextSlide"><img src="https://maxcdn.icons8.com/windows10/PNG/16/Arrows/angle_right-16.png" title="Forward" width="16"></a>
+</div>
+
+<script>
+    $('.slides').pastoreSlider3d();
+</script>

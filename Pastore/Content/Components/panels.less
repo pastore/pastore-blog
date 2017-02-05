@@ -1,0 +1,43 @@
+﻿@import "../Utils/mixins.less";
+
+.panel{
+    .base_panel();
+}
+.panel__header{
+    .panel_header();
+}
+.panel__body{
+    padding:15px;
+}
+.panel_success{
+    &:extend(.panel);
+    .border_color_panel(@border-color-success);
+    &__header{
+        &:extend(.panel__header);
+        .custom_panel_header(@border-color-success,@color-success,@bg-success);
+    }
+}
+.panel_info{
+    &:extend(.panel);
+    .border_color_panel(@border-color-info);
+    &__header{
+        &:extend(.panel__header);
+        .custom_panel_header(@border-color-info,@color-info,@bg-info);
+    }
+}
+.panel_warnning{
+    &:extend(.panel);
+    .border_color_panel(@border-color-warnning);
+    &__header{
+        &:extend(.panel__header);
+        .custom_panel_header(@border-color-warnning,@color-warnning,@bg-warnning);
+    }
+}
+.panel_danger{
+    &:extend(.panel);
+    .border_color_panel(@border-color-danger);
+    &__header{
+        &:extend(.panel__header);
+        .custom_panel_header(@border-color-danger,@color-danger,@bg-danger);
+    }
+}

@@ -1,0 +1,20 @@
+﻿@using Pastore.ViewModels
+@{
+    var categories = (ViewBag.categories as IEnumerable<IdNameGroup>) ?? Enumerable.Empty<IdNameGroup>();
+}
+@if (categories.Any(x => x.GroupId > 0))
+{
+    <div class="category_tags js_category_fixed">
+        <div class="category_tags__header">@("Categories")</div>
+        <div class="category_tags__list">
+            @foreach (var category in categories)
+            {
+                <a class="category_tag" href="@(Url.RouteUrl("Articles_ByCategories", new { category = category.Name }))">
+                    <span class="category_tag__text">@(category.Name)</span>
+                    <span class="category_tag__count">@(category.GroupId)</span>
+                </a>
+            }
+        </div>
+    </div>
+}
+

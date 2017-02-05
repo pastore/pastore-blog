@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+@section MainStyles{
+    @Styles.Render("~/Content/Root")
+    @Styles.Render("~/Content/Home")
+}
+
+@section MainScripts{
+    @Scripts.Render("~/Scripts/JQuery")
+}
+
+@section SiteHeader{
+    @{Html.RenderAction("HomeHeader", "SiteHeader", new { area = string.Empty , viewData = ViewData });}
+}
+
+<section class="home_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-9">
+                @RenderBody()
+            </div>
+            <div class="col-xs-3" id="sidebar">
+                @{Html.RenderAction("HomeSidePanel", "Home");}
+            </div>
+        </div>
+    </div>
+</section>
+
+@section SiteFooter{
+    @{
+        if ((bool?)ViewBag.showFooter ?? true)
+        {
+            Html.RenderAction("Index", "SiteFooter", new { area = String.Empty });
+        }
+    }
+}
+@section ExtraScripts{
+    @Scripts.Render("~/Scripts/Knockout")
+}

@@ -1,0 +1,231 @@
+﻿@{
+    ViewBag.Title = "User Profile";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<div class="personal_info">
+    <div class="personal_info__result">
+        
+    </div>
+    <div class="personal_info__row">
+        <div class="personal_info__label">
+        </div>
+        <div class="personal_info__editor edit_header">
+            <div class="edit_header__item" data-bind="visible: isEdit">
+                <a class="btn_blue" href="javascript:void(0)" data-bind="click: $root.saveChanges">@("Save")</a>
+                <a class="btn_gray" href="javascript:void(0)" data-bind="click: $root.changeStateEditor">@("Cancel")</a>
+            </div>
+            <div class="edit_header__item" data-bind="visible: !isEdit()">
+                <a class="btn_blue" href="javascript:void(0)" data-bind="click: $root.changeStateEditor">@("Change profile")</a>
+            </div>
+        </div>
+    </div>
+    <div class="personal_info__row">
+        <div class="personal_info__label">
+            @("Address")
+        </div>
+        <div class="personal_info__editor">
+            <!-- ko if: isEdit() -->
+            <input class="form_input" type="text" data-bind="value: Address"/>
+            <!-- /ko -->
+            <!-- ko ifnot: isEdit() -->
+            <!-- ko if: Address() -->
+            <span class="personal_info__display" data-bind="text: Address"></span>
+            <!-- /ko -->
+            <!-- ko ifnot: Address() -->
+            <a class="blue_link" href="javascript:void(0)" data-bind="click: $root.changeStateEditor">@("Change address")</a>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="personal_info__row">
+        <div class="personal_info__label">
+            @("Gender")
+        </div>
+        <div class="personal_info__editor edit_gender">
+            <!-- ko if: isEdit() -->
+            <label class="edit_gender__item form_label_wrapprer" for="gender_true">
+                <input class="form_checkbox" type="radio" id="gender_true" name="Gender" data-bind="checked: Gender,checkedValue: true"/>
+                <span class="span_checkbox"></span>
+                <span>Man</span>
+            </label>
+            <label class="edit_gender__item form_label_wrapprer" for="gender_false">
+                <input class="form_checkbox" type="radio" id="gender_false" name="Gender" data-bind="checked: Gender,checkedValue: false"/>
+                <span class="span_checkbox"></span>
+                <span >Woman</span>
+            </label>
+            <!-- /ko -->
+            <!-- ko ifnot: isEdit() -->
+            <span class="personal_info__display" data-bind="text: Gender() ? 'Man' : 'Woman' "></span>
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="personal_info__row">
+        <div class="personal_info__label">
+            @("Phone")
+        </div>
+        <div class="personal_info__editor">
+            <!-- ko if: isEdit() -->
+            <input class="form_input" type="text" data-bind="value: Phone"/>
+            <!-- /ko -->
+            <!-- ko ifnot: isEdit() -->
+            <!-- ko if: Phone() -->
+            <span class="personal_info__display" data-bind="text: Phone"></span>
+            <!-- /ko -->
+            <!-- ko ifnot: Phone() -->
+            <a class="blue_link" href="javascript:void(0)" data-bind="click: $root.changeStateEditor">@("Change phone")</a>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="personal_info__row">
+        <div class="personal_info__label">
+            @("Country")
+        </div>
+        <div class="personal_info__editor">
+            <!-- ko if: isEdit() -->
+            <div >
+                <select class="pastore_select" data-placeholder="Select country"
+                        data-bind="options:countries, optionsText : 'Name',optionsValue : 'Id',value: CountryId,event:{ change : selectedCountry },css:{ dn: !isEdit() }"></select>
+            </div>
+            <!-- /ko -->
+            <!-- ko ifnot: isEdit() -->
+            <!-- ko if: Country() -->
+            <span class="personal_info__display" data-bind="text: Country"></span>
+            <!-- /ko -->
+            <!-- ko ifnot: Country() -->
+            <a class="blue_link" href="javascript:void(0)" data-bind="click: $root.changeStateEditor">@("Change country")</a>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <div class="personal_info__row">
+        <div class="personal_info__label">
+            @("City")
+        </div>
+        <div class="personal_info__editor">
+            <!-- ko if: isEdit() -->
+            <div>
+                <select class="pastore_select" data-placeholder="Select city" id="CityId"
+                        data-bind="options:selectedCities, optionsText : 'Name',optionsValue : 'Id',value: CityId,event:{ change : selectedCity },css:{ dn: !isEdit() }"></select>
+            </div>
+            <!-- /ko -->
+            <!-- ko ifnot: isEdit() -->
+            <!-- ko if: City() -->
+            <span class="personal_info__display" data-bind="text: City"></span>
+            <!-- /ko -->
+            <!-- ko ifnot: City() -->
+            <a class="blue_link" href="javascript:void(0)" data-bind="click: $root.changeStateEditor">@("Change city")</a>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+<script>
+    var countryModel = function() {
+        var self = this;
+        self.Id = ko.observable();
+        self.countryName = ko.observable();
+    };
+    var cityModel = function() {
+        var self = this;
+        self.Id = ko.observable();
+        self.cityName = ko.observable();
+        self.CountryId = ko.observable();
+    };
+
+    var userProfileViewModel = function() {
+        var self = this;
+        self.changeStateEditor = function() {
+            self.isEdit(!self.isEdit());
+            if (self.isEdit()) {
+                [].slice.call(document.querySelectorAll('.pastore_select'))
+                    .forEach(function(el) {
+                        new pastoreSelect(el);
+                    });
+            }
+        };
+        self.isEdit = ko.observable();
+        self.saveChanges = function() {
+            $.ajax({
+                url: '@Url.Action("SaveUserProfile")',
+                type: 'post',
+                data: ko.mapping.toJS(self),
+                async: false,
+                success: function (data) {
+                    var resultContainer = document.querySelector(".personal_info__result");
+                    setTimeout(function() {
+                        resultContainer.classList.add("reset_opacity");
+                        },
+                        3000);
+                    
+                    resultContainer.addEventListener("transitionend", function() {
+                        while (resultContainer.firstChild) {
+                            resultContainer.removeChild(resultContainer.firstChild);
+                        }
+                        resultContainer.classList.remove("reset_opacity");
+                    });
+                    resultContainer.innerHTML = data;
+                }
+            });
+        };
+        self.getUserProfile = function() {
+            $.ajax({
+                url: '@Url.Action("GetUserProfile")',
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    ko.mapping.fromJS(data, {}, self);
+                }
+            });
+        }
+        self.countries = ko.observableArray([{ "Id": 1, "Name": "Ukraine" }, { "Id": 2, "Name": "Russia" }]);
+        self.cities = ko.observableArray([
+            { "Id": 1, "Name": "Kyiv", "CountryId": 1},
+            { "Id": 2, "Name": "Dnepr", "CountryId": 1 },
+            { "Id": 3, "Name": "Moscow", "CountryId": 2 },
+            { "Id": 4, "Name": "St.Piterburg", "CountryId": 2 }]);
+        self.getUserProfile();
+        self.isEdit(false);
+        self.selectedCities = ko.computed(function () {
+            var filter = self.CountryId() ? self.CountryId() : 0;
+            if (!filter) {
+                return self.cities();
+            } else {
+                return ko.utils.arrayFilter(self.cities(), function (item) {
+
+                    return item.CountryId === filter;
+                });
+            }
+        });
+        self.selectedCountry = function () {
+            var selectCity = document.getElementById("CityId");
+            selectCity.dispatchEvent(new Event("updated"));
+            self.setCountry();
+        };
+        self.selectedCity = function () {
+            self.setCity();
+        }
+        self.setCountry = function() {
+            var item = ko.utils.arrayFirst(self.countries(),function(item) {
+                return item.Id === self.CountryId();
+            });
+            if (item) {
+                self.Country(item.Name);
+            }
+        };
+        self.setCity = function () {
+            var item = ko.utils.arrayFirst(self.cities(), function (item) {
+                return item.Id === self.CityId();
+            });
+            if (item) {
+                self.City(item.Name);
+            }
+        };
+        self.setCountry();
+        self.setCity();
+    };
+    document.addEventListener("DOMContentLoaded", function (event) {
+        ko.applyBindings(new userProfileViewModel());
+    });
+</script>
+

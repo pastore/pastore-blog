@@ -1,0 +1,45 @@
+﻿@using Pastore.Model.Models;
+@model IEnumerable<ApplicationUser>
+@{
+    ViewBag.Title = "Admin-Users";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr class="row">
+            <th class="col-xs-6">@("Name")</th>
+            <th class="col-xs-2">@("Created")</th>
+            <th class="col-xs-2">@("Last login date")</th>
+            <th class="col-xs-2">@("Login")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var user in Model)
+            {
+                @UserRow(user);
+            }
+        }
+        else
+        {
+            <tr><td class="cell_centered" colspan="4">@("Users doesnt exist")</td></tr>
+        }
+    </tbody>
+</table>
+
+@helper UserRow(ApplicationUser user)
+{
+    <tr class="row">
+        <td class="col-xs-6">@user.UserName</td>
+        <td class="col-xs-2">@user.DateCreated</td>
+        <td class="col-xs-2">@user.LastLoginTime</td>
+        <td class="col-xs-2">
+            @Html.ActionLink("Login", "LoginAs", "Admin",
+        new { area = "Admin", id = user.Id }, new { @class = "btn_blue" })
+        </td>
+    </tr>
+}
+
+

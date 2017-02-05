@@ -1,0 +1,19 @@
+﻿<div class="sidepanel">
+    <div class="sidepanel__block block_sidepanel">
+        <ul class="block_sidepanel__list">
+            <li class="block_sidepanel__item">
+                @Html.ActionLink("Users", "Users", "Admin",
+        new { area = "Admin" }, new { @class = "block_sidepanel__link" })
+            </li>
+            
+            <li class="block_sidepanel__item">
+                @Html.ActionLink("Articles", "Articles", "Admin",
+        new { area = "Admin" }, new { @class = "block_sidepanel__link" })
+            </li>
+            <li class="block_sidepanel__item">
+                @Html.ActionLink("Categories", "Categories", "Admin",
+        new { area = "Admin" }, new { @class = "block_sidepanel__link" })
+            </li>
+        </ul>
+    </div>
+</div>

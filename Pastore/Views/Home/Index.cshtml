@@ -1,0 +1,31 @@
+﻿@using Pastore.ViewModels
+@model IEnumerable<ArticleHomeViewModel>
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    var countPages = ViewBag.countPages;
+    var currentPage = ViewBag.currentPage;
+    var countVisiblePagerButtons = ViewBag.countVisiblePagerButtons;
+    var nameRoute = ViewBag.nameRoute;
+    var routeValues = ViewBag.routeValues;
+    ViewDataDictionary dict = new ViewDataDictionary()
+    {
+        { "countPages", countPages},
+        { "currentPage", currentPage},
+        { "countVisiblePagerButtons", countVisiblePagerButtons },
+        { "nameRoute" , nameRoute},
+        { "routeValues", routeValues }
+    };
+}
+
+<div class="card_list">
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(x => item)
+    }
+</div>
+             
+@{ Html.RenderPartial("pv_PagerControl", dict);}
+
+
+

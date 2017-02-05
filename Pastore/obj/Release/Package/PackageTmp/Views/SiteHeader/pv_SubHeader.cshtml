@@ -1,0 +1,28 @@
+﻿@using Pastore.ViewModels
+@{
+    var showSubHeader = ViewBag.showSubHeader ?? false;
+    List<IdNamePath> subHeaderLinks =  ViewBag.subHeaderLinks ?? new List<IdNamePath>();
+}
+@if (showSubHeader && subHeaderLinks.Any())
+{
+    <section class="sub_header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="sub_header__list">
+                        @foreach (var link in subHeaderLinks)
+                        {
+                            var isLastLink = link.Name == subHeaderLinks.Last().Name;
+                            <li>
+                                <a class="sub_header__link @(isLastLink ? "active" : string.Empty)" @(isLastLink ? string.Empty : "href=" + link.Path)>
+                                    @(link.Name)
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+

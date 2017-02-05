@@ -1,0 +1,63 @@
+﻿@using System.Diagnostics
+@using Pastore.Model.Models
+<ul class="top_nav_list js_top_nav_list">
+    @if (CurrentUser.AccountType != AccountType.Anonymous)
+    {
+        <li class="top_nav_item">
+            <a href="javascript:void(0)" class="open_search">
+                <i class="fa fa-search"></i>
+            </a>
+        </li>
+        <li class="top_nav_item top_nav_item--absolute">
+            @Html.ActionLink("Hello " + CurrentUser.UserName + "!", "UserProfile", "Manage")
+        </li>
+        if (CurrentUser.AccountType == AccountType.Admin)
+        {
+            <li class="top_nav_item top_nav_item--absolute">
+                @Html.ActionLink("Admin", "Dashboard", "Admin",new { area = "Admin" },new {})
+            </li>
+        }
+        
+        <li class="top_nav_item top_nav_item--absolute">
+            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+            }
+        </li>
+        
+    }
+    else
+    {
+        <li class="top_nav_item">
+            <a href="javascript:void(0)" class="open_search">
+                <i class="fa fa-search"></i>
+            </a>
+        </li>
+        <li class="top_nav_item">@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li class="top_nav_item">
+            <a href="javascript:ShowLogin()">
+                @("Login")
+            </a>
+        </li>
+    }
+    <li class="top_nav_item top_nav_item--button">
+        <a class="js_open_top_nav_menu" href="">@("X")</a>
+    </li>
+</ul>
+
+<script>
+    
+
+    @if (Request.Url.Query.Contains("ReturnUrl="))
+    {
+        <text>
+           $(function () {
+               ShowLogin();
+           })
+        </text>
+    }
+    function ShowLogin() {
+        $('.login_box').load('@Url.Action("Login", "Account", new { returnUrl = Request.QueryString["returnUrl"], view = "_Login2" })');
+    }
+</script>

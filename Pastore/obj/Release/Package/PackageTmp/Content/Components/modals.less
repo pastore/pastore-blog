@@ -1,0 +1,38 @@
+﻿@import "../Utils/mixins.less";
+
+//pastore modal
+.pastore_modal{
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 9550;
+    background-color: @color-turquoise;
+}
+.modal_container{
+    width:400px;
+    margin:165px auto 0;
+    border: 1px solid #333;
+    background:#fff;
+    padding:30px;
+}
+.modal_container__close{
+    display:flex;
+    flex-direction:row-reverse;
+    i.fa{
+        cursor:pointer;
+        font-size:20px;
+    }
+}
+.modal_container__content{
+   
+}
+.form_modal__group{
+    padding:10px 0;
+}
+.form_modal__label{
+    width:80px;
+    display:inline-block;
+}

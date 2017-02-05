@@ -1,0 +1,116 @@
+﻿@{
+    ViewBag.Title = "EditArticle";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@using Pastore.Model.Models
+@model ArticleViewModel
+
+@using (Html.BeginForm("EditArticle", "Admin", FormMethod.Post, new { @class = "article_edit_form", enctype = "multipart/form-data" }))
+{
+    <div class="article_edit_form__block article_edit_form__block--errors">
+        <div class="col-offset-xs-3 col-xs-9">
+            <div class="@(Html.ViewData.ModelState.IsValid ? "validation-summary-valid" : "validation-summary-errors") panel_danger"
+                    data-valmsg-summary="true">
+                <div class="panel_danger__header">
+                    Please, correct the following errors:
+                </div>
+                <div class="panel__body">
+                    <ul>
+                        @foreach (var modelError in ViewData.ModelState.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+                        {
+                            <li>@modelError.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="article_edit_form__block row middle-xs">
+        <label class="form_label col-xs-3">Name</label>
+        <div class="col-xs-9">
+            @Html.EditorFor(x => x.ArticleName, new { htmlAttributes = new { @class = "form_input" } })
+        </div>
+    </div>
+    <div class="article_edit_form__block row middle-xs">
+        <label class="form_label col-xs-3">Url</label>
+        <div class="col-xs-9">
+            @Html.EditorFor(x => x.UrlViewDemo, new { htmlAttributes = new { @class = "form_input" } })
+        </div>
+    </div>
+    <div class="article_edit_form__block row middle-xs">
+        <label class="form_label col-xs-3">Category</label>
+        <div class="col-xs-9">
+            @Html.ListBoxFor(x => x.CategoryId, Model.Categories, new { @class = "pastore_select", data_placeholder = "Select category" })
+        </div>
+    </div>
+    <div class="article_edit_form__block row middle-xs">
+        <label class="form_label col-xs-3">Description</label>
+        <div class="col-xs-9">
+            @Html.TextAreaFor(x => x.ArticleDescription, new { @class = "form_textarea" })
+        </div>
+    </div>
+    <div class="article_edit_form__block row middle-xs">
+        <label class="form_label col-xs-3">Content</label>
+        <div class="col-xs-9">
+            @Html.TextAreaFor(x => x.ArticleContent, new { @class = "form_textarea" })
+        </div>
+    </div>
+    <div class="article_edit_form__block row middle-xs">
+        <label class="form_label col-xs-3">Image for teaser</label>
+        <div class="col-xs-9">
+            <div class="file_upload_control">
+                <span class="button">@("Choose file")</span>
+                <span class="title">@("File is not selected")</span>
+                <input type="file" name="teaserImage"/>
+            </div>
+        </div>
+    </div>
+    <div class="article_edit_form__block">
+        <div class="col-offset-xs-3 col-xs-9">
+            <input class="btn_blue" type="submit" value="Save" />
+        </div>
+    </div>
+}
+<script>
+    window.onload = function() {
+        [].slice.call(document.querySelectorAll('.pastore_select')).forEach(function (el) {
+            new pastoreSelect(el);
+        });
+    }
+    //init file uploafd control
+    var fileUploadControl = document.querySelector(".file_upload_control");
+    var fileUploadInput = fileUploadControl.querySelector("input[type=file]");
+    var fileUploadText = fileUploadControl.querySelector(".title");
+    var file_api = (window.File && window.FileReader && window.FileList && window.Blob) ? true : false;
+    var nameTeaserImage = '';
+    @if (Model.ArticleFiles.Any(x => x.ArticleFileType == ArticleFileType.TeaserImage))
+    {
+        <text>
+        nameTeaserImage = "@Model.ArticleFiles.FirstOrDefault(x => x.ArticleFileType == ArticleFileType.TeaserImage).FileName";
+        fileUploadInput.value = nameTeaserImage;
+        fileUploadText.textContent = nameTeaserImage;
+        </text>
+    }
+    
+    fileUploadInput.addEventListener("change",function() {
+        var fileName;
+        if (file_api && fileUploadInput.files[0])
+            fileName = fileUploadInput.files[0].name;
+        else
+            //fileName = fileUploadInput.val().replace("C:\\fakepath\\", '');
+            fileName = fileUploadInput.value;
+
+        if (!fileName.length)
+            return;
+
+        if (window.getComputedStyle(fileUploadText).display !== "none") {
+            fileUploadText.textContent = fileName;
+        }
+    });
+    fileUploadInput.addEventListener("focus", function () {
+        fileUploadControl.classList.add("focus");
+    });
+    fileUploadInput.addEventListener("blur", function () {
+        fileUploadControl.classList.remove("focus");
+    });
+</script>

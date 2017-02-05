@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CategoryViewModel>
+
+@{
+    ViewBag.Title = "Admin-Categories";
+    var isPartial = ViewBag.isPartial ?? false;
+    if (!isPartial)
+    {
+        Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = null;
+    }
+}
+
+
+<div class="wall">
+    @Html.ActionLink("Add new category", "EditCategory", "Admin",
+        new { area = "Admin", id = 0 }, new { @class = "btn_blue" })
+</div>
+<table class="table">
+    <thead>
+    <tr class="row">
+        <th class="col-xs-1">@("Id")</th>
+        <th class="col-xs-9">@("Name")</th>
+        <th class="col-xs-2">@("Delete")</th>
+    </tr>
+    </thead>
+    <tbody>
+    @if (Model != null && Model.Any())
+    {
+        foreach (var category in Model)
+        {
+            @CategoryRow(category);
+        }
+    }
+    else
+    {
+        <tr><td class="cell_centered" colspan="4">@("Categories doesnt exist")</td></tr>
+    }
+    </tbody>
+</table>
+
+@helper CategoryRow(CategoryViewModel category)
+{
+    <tr class="row">
+        <td class="col-xs-1">@category.Id</td>
+        <td class="col-xs-9">@category.Name</td>
+        <td class="col-xs-2">
+            @Ajax.ActionLink("Delete","DeleteCategory","Admin", new { id = category.Id },new AjaxOptions() { UpdateTargetId = "AdminWrapper" }, new { @class = "btn_red" })
+        </td>
+    </tr>
+}

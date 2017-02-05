@@ -1,0 +1,19 @@
+﻿@import "../Utils/mixins.less";
+.table{
+    width:100%;
+    max-width:100%;
+    background-color: transparent;
+    tr.row{
+        align-items:center;
+        border-top: 1px solid #dddddd;
+    }
+}
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: middle;
+}
+td.cell_centered,th.cell_centered{
+    .table_cell_centered();
+}

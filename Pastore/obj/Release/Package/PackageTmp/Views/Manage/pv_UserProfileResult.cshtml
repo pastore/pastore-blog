@@ -1,0 +1,23 @@
+﻿@model bool
+@if (Model)
+{
+    <div class="panel_success js_result">
+        <div class="panel_success__header">
+            @("Success")
+        </div>
+        <div class="panel__body">
+            @("Save changes successfully!")
+        </div>
+    </div>
+}
+else
+{
+    <div class="panel_warnning js_result">
+        <div class="panel_warnning__header">
+            @("Error")
+        </div>
+        <div class="panel__body">
+            @("Something happens.")
+        </div>
+    </div>
+}

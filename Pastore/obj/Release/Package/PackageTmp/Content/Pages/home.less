@@ -1,0 +1,55 @@
+﻿@import "../Utils/mixins.less";
+.home_wrapper{
+    padding:80px 0 25px;
+}
+.card{
+    padding-bottom:60px;
+    margin-bottom:80px;
+    border-bottom:1px solid @color-gray;
+    &:last-child{
+        border-bottom: none;
+    }
+}
+.card__view{
+    margin-bottom:20px;
+}
+.card__name{
+    font-size:22px;
+    margin-bottom:10px;
+}
+.card__options{
+    display:flex;
+    padding-bottom:20px;
+    margin-bottom:30px;
+    border-bottom:1px solid @color-gray;
+    color:@color-gray80;
+    line-height:normal;
+}
+.card__description{
+    margin-bottom:30px;
+}
+.view_card{
+    overflow:hidden;
+    height:260px;
+}
+.view_card__image{
+    width:880px;
+}
+.options_card__item{
+    margin-right:20px;
+    display:flex;
+    align-items:center;
+}
+.options_card__icon{
+    margin-right:5px;
+}
+.options_card_categories{
+    display:flex;
+}
+.categories_list__link{
+    color:inherit;
+    transition: color .3s linear;
+    &:hover{
+        color:@color-black;
+    }
+}

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "ColorPicker";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+    <link href="@(Url.Content("~/Content/Externals/colpick.css"))" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/JQuery")
+    <script src="~/Scripts/colpick.js"></script>
+}
+
+<h2>ColorPicker</h2>
+
+@using (Ajax.BeginForm("CheckColorPicker","JS",new { area = "JavaScript" }, new AjaxOptions {  UpdateTargetId = "ColorPickerId"}))
+{
+    <input name="colorName" id="colorName"/>
+    <input type="submit" style="margin-top:20px;" value="Check"/>
+}
+
+<div id="ColorPickerId">
+
+</div>
+
+<script>
+    $("#colorName").colpick({
+        onSubmit: function (hsb, hex, rgb, el, bySetColor) {
+            $(el).val('#' + hex);
+            $(el).colpickHide();
+        }
+    });
+</script>

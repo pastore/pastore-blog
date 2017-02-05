@@ -1,0 +1,130 @@
+﻿[
+  {
+    "outputFile": "Content/home.css",
+    "inputFile": "Content/home.less"
+  },
+  {
+    "outputFile": "Content/Home/colors.css",
+    "inputFile": "Content/Home/colors.less"
+  },
+  {
+    "outputFile": "Content/Home/definition.css",
+    "inputFile": "Content/Home/definition.less"
+  },
+  {
+    "outputFile": "Content/Home/main.css",
+    "inputFile": "Content/Home/main.less"
+  },
+  {
+    "outputFile": "Content/Home/header.css",
+    "inputFile": "Content/Home/header.less"
+  },
+  {
+    "outputFile": "Content/Home/footer.css",
+    "inputFile": "Content/Home/footer.less"
+  },
+  {
+    "outputFile": "Content/HomeStyle/header.css",
+    "inputFile": "Content/HomeStyle/header.less"
+  },
+  {
+    "outputFile": "Content/HomeStyle/main.css",
+    "inputFile": "Content/HomeStyle/main.less"
+  },
+  {
+    "outputFile": "Content/grid.css",
+    "inputFile": "Content/grid.less"
+  },
+  {
+    "outputFile": "Content/normalize.css",
+    "inputFile": "Content/normalize.less"
+  },
+  {
+    "outputFile": "Content/Layout/grid.css",
+    "inputFile": "Content/Layout/grid.less"
+  },
+  {
+    "outputFile": "Content/Pages/dashboard.css",
+    "inputFile": "Content/Pages/dashboard.less"
+  },
+  {
+    "outputFile": "Content/Layout/normalize.css",
+    "inputFile": "Content/Layout/normalize.less"
+  },
+  {
+    "outputFile": "Content/Pages/account.css",
+    "inputFile": "Content/Pages/account.less"
+  },
+  {
+    "outputFile": "Content/Pages/admin.css",
+    "inputFile": "Content/Pages/admin.less"
+  },
+  {
+    "outputFile": "Content/Layouts/normalize.css",
+    "inputFile": "Content/Layouts/normalize.less"
+  },
+  {
+    "outputFile": "Content/Components/tables.css",
+    "inputFile": "Content/Components/tables.less"
+  },
+  {
+    "outputFile": "Content/Components/modals.css",
+    "inputFile": "Content/Components/modals.less"
+  },
+  {
+    "outputFile": "Content/Components/buttons.css",
+    "inputFile": "Content/Components/buttons.less"
+  },
+  {
+    "outputFile": "Content/Layouts/grid.css",
+    "inputFile": "Content/Layouts/grid.less"
+  },
+  {
+    "outputFile": "Content/Layouts/header.css",
+    "inputFile": "Content/Layouts/header.less"
+  },
+  {
+    "outputFile": "Content/Components/forms.css",
+    "inputFile": "Content/Components/forms.less"
+  },
+  {
+    "outputFile": "Content/Components/panels.css",
+    "inputFile": "Content/Components/panels.less"
+  },
+  {
+    "outputFile": "Content/Components/pastoreSelect.css",
+    "inputFile": "Content/Components/pastoreSelect.less"
+  },
+  {
+    "outputFile": "Content/Pages/home.css",
+    "inputFile": "Content/Pages/home.less"
+  },
+  {
+    "outputFile": "Content/Components/pager.css",
+    "inputFile": "Content/Components/pager.less"
+  },
+  {
+    "outputFile": "Content/Pages/userprofile.css",
+    "inputFile": "Content/Pages/userprofile.less"
+  },
+  {
+    "outputFile": "Content/Externals/jqModal.css",
+    "inputFile": "Content/Externals/jqModal.less"
+  },
+  {
+    "outputFile": "Content/Layouts/side-panel.css",
+    "inputFile": "Content/Layouts/side-panel.less"
+  },
+  {
+    "outputFile": "Content/Pages/search.css",
+    "inputFile": "Content/Pages/search.less"
+  },
+  {
+    "outputFile": "Content/Components/atomic.css",
+    "inputFile": "Content/Components/atomic.less"
+  },
+  {
+    "outputFile": "Content/Layouts/header_mq.css",
+    "inputFile": "Content/Layouts/header_mq.less"
+  }
+]

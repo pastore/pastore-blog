@@ -1,0 +1,38 @@
+﻿@model Pastore.ViewModels.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<div class="pe_form_wrapper">
+    <h2>@ViewBag.Title.</h2>
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "pe_form", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4>Create a new account.</h4>
+
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="pe_form__group">
+            @Html.LabelFor(m => m.Name, new { @class = "pe_form__label" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "" })
+        </div>
+        <div class="pe_form__group">
+            @Html.LabelFor(m => m.Email, new { @class = "pe_form__label" })
+            @Html.TextBoxFor(m => m.Email, new { @class = "" })
+        </div>
+        <div class="pe_form__group">
+            @Html.LabelFor(m => m.Password, new { @class = "pe_form__label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "" })
+        </div>
+        <div class="pe_form__group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "pe_form__label" })
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "" })
+        </div>
+        <div class="pe_form__group">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    }
+</div>
+
+

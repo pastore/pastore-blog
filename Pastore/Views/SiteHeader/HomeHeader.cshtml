@@ -1,0 +1,22 @@
+﻿<header>
+    <div class="top_line">
+        <div class="top_line_content js_top_line_content">
+            <a href="/" class="main_logo">
+                <span class="body">@("Pastor")</span>
+                <span class="last_letter">@("E")</span>
+            </a>
+            @{Html.RenderPartial("TopNavMenu", "SiteHeader");}
+        </div>
+        <div class="search_box">
+            @using (Html.BeginForm("Search", "Search", FormMethod.Post, new { @class = "main_form_search js_global_search" }))
+            {
+                <input type="text" name="term" placeholder="Search" class="main_input_search" />
+            }
+            <a href="javacsript:void(0)" class="close_search fa fa-times"></a>
+        </div>
+        <div class="login_box"></div>
+    </div>
+</header>
+@{ Html.RenderPartial("pv_SubHeader"); }
+
+

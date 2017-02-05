@@ -1,0 +1,37 @@
+﻿@import "../Utils/mixins.less";
+
+.container{
+  margin-right: auto;
+  margin-left: auto;
+}
+.container-fluid{
+  margin-right: auto;
+  margin-left: auto;
+}
+.row {
+    display: flex;
+    -ms-flex: 0 1 auto;
+    -webkit-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.row.reverse {
+    -ms-flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+.generate-columns(@grid-columns,@xs,@padding_beetwen_col);
+.generate-offset(@grid-columns,@offset-xs);
+.generate-position(@xs);
+
+.generate-media(@sm-media-size,@container-lg-width,@grid-columns,@sm,@padding_beetwen_col,@offset-sm);
+.generate-media(@md-media-size,@container-lg-width,@grid-columns,@md,@padding_beetwen_col,@offset-md);
+.generate-media(@lg-media-size,@container-lg-width,@grid-columns,@lg,@padding_beetwen_col,@offset-lg);
+

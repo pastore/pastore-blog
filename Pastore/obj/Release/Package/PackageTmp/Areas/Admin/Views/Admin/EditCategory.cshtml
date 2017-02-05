@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "EditCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var categories = (ViewBag.categories as IEnumerable<CategoryViewModel>) ?? Enumerable.Empty<CategoryViewModel>();
+}
+@using System.Collections
+@model CategoryViewModel
+@using (Html.BeginForm("EditCategory", "Admin", FormMethod.Post, new { @class = "article_edit_form" }))
+{
+    <div class="article_edit_form__block article_edit_form__block--errors">
+        <div class="col-offset-xs-3 col-xs-9">
+            <div class="@(Html.ViewData.ModelState.IsValid ? "validation-summary-valid" : "validation-summary-errors") panel_danger"
+                    data-valmsg-summary="true">
+                <div class="panel_danger__header">
+                    Please, correct the following errors:
+                </div>
+                <div class="panel__body">
+                    <ul>
+                        @foreach (var modelError in ViewData.ModelState.SelectMany(keyValuePair => keyValuePair.Value.Errors))
+                        {
+                            <li>@modelError.ErrorMessage</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="article_edit_form__block row middle-xs">
+        <label class="form_label col-xs-3">Name</label>
+        <div class="col-xs-9">
+            @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "form_input" } })
+        </div>
+    </div>
+    if (categories.Any())
+    {
+        <div class="article_edit_form__block row middle-xs">
+            <label class="form_label col-xs-3">Parent category</label>
+            <div class="col-xs-9">
+                @Html.DropDownListFor(x => x.ParentId, new SelectList(categories, "Id", "Name", "Choose parent category"),new { @class = "pastore_select" })
+            </div>
+        </div>
+    }
+    <div class="article_edit_form__block">
+        <div class="col-offset-xs-3 col-xs-9">
+            <input class="btn_blue" type="submit" value="Save" />
+        </div>
+    </div>
+}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        [].slice.call(document.querySelectorAll('.pastore_select')).forEach(function (el) {
+            new pastoreSelect(el);
+        });
+    });
+</script>
+
