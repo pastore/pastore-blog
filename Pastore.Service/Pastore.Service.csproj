@@ -62,6 +62,7 @@
     <Compile Include="Interfaces\IArticleFileService.cs" />
     <Compile Include="Interfaces\IArticleService.cs" />
     <Compile Include="Interfaces\ICategoryServise.cs" />
+    <Compile Include="Interfaces\IFighterService.cs" />
     <Compile Include="Interfaces\IGlobalSearchService.cs" />
     <Compile Include="Interfaces\IUserProfileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Services\ArticleFileService.cs" />
     <Compile Include="Services\ArticleService.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\FighterService.cs" />
     <Compile Include="Services\GlobalSearchService.cs" />
     <Compile Include="Services\UserProfileService.cs" />
     <Compile Include="ViewModel\GlobalSearchResultModel.cs" />

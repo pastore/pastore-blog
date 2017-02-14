@@ -74,6 +74,7 @@
     <Compile Include="Repository\ArticleFileRepository.cs" />
     <Compile Include="Repository\ArticleRepository.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="Repository\FighterRepository.cs" />
     <Compile Include="Repository\UserProfileRepository.cs" />
   </ItemGroup>
   <ItemGroup>

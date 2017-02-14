@@ -16,6 +16,7 @@ namespace Pastore.Data.DataContext
         public virtual DbSet<Article> Articles { get; set; }
         public virtual  DbSet<ArticleFile> ArticleFiles { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Fighter> Fighters { get; set; }
         
         public virtual void Commit()
         {

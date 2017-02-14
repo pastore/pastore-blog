@@ -1,0 +1,25 @@
+﻿@using Pastore.Model.Models
+@model IEnumerable<Fighter>
+@{
+    ViewBag.Title = "Test knockout";
+    Layout = "~/Areas/JavaScript/Views/Shared/_KnockoutLayuot.cshtml";
+}
+
+<h2 class="k_header">Test knockout</h2>
+
+<div class="k_list" id="FighterWrapper" data-bind="foreach: {data: items , as : 'fighter'}">
+    <div class="k_item" data-bind="text: fighter.Name" style="color: white; margin-bottom: 10px;background: blue;"></div>
+</div>
+
+
+<script>
+    var fighterViewModel = function() {
+        var self = this;
+        self.name =  
+        self.items = ko.observableArray([]);
+        var tempItems = '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Take(10)))';
+        self.items(ko.mapping.fromJSON(tempItems)());
+    };
+
+    ko.applyBindings(new fighterViewModel(), document.getElementById("FighterWrapper"));
+</script>

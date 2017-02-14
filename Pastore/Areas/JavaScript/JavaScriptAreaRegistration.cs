@@ -10,6 +10,11 @@ namespace Pastore.Areas.JavaScript
         {
             #region Knockout
             context.MapRoute(
+                "test_knockout",
+                "test_knockout",
+                new { area = AreaName, controller = "Knockout", action = "Test" }
+            );
+            context.MapRoute(
                 "pager",
                 "pager",
                 new { area = AreaName, controller = "Knockout", action = "Pager" }

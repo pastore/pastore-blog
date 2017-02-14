@@ -31,7 +31,7 @@ var DEBUG=true;
 // In the future, the following "ko" variable may be made distinct from "koExports" so that private objects are not externally reachable.
 var ko = typeof koExports !== 'undefined' ? koExports : {};
 // Google Closure Compiler helpers (used only to make the minified file smaller)
-ko.exportSymbol = function(koPath, object) {
+ko.exportSymbol = function (koPath, object) {
     var tokens = koPath.split(".");
 
     // In the future, "ko" may become distinct from "koExports" (so that non-exported objects are not reachable)
@@ -944,7 +944,7 @@ ko.exportSymbol('utils.domNodeDisposal.removeDisposeCallback', ko.utils.domNodeD
         if ((html !== null) && (html !== undefined)) {
             if (typeof html != 'string')
                 html = html.toString();
-
+            
             // jQuery contains a lot of sophisticated code to parse arbitrary HTML fragments,
             // for example <tr> elements which are not normally allowed to exist on their own.
             // If you've referenced jQuery we'll use that rather than duplicating its code.
@@ -2716,7 +2716,7 @@ ko.exportSymbol('jsonExpressionRewriting.insertPropertyAccessorsIntoJson', ko.ex
             throw new Error("Cannot find closing comment tag to match: " + startComment.nodeValue);
         return null;
     }
-
+http://localhost:4987/../Areas
     function getMatchingEndComment(startComment, allowUnbalanced) {
         var allVirtualChildren = getVirtualChildren(startComment, allowUnbalanced);
         if (allVirtualChildren) {
@@ -2777,7 +2777,7 @@ ko.exportSymbol('jsonExpressionRewriting.insertPropertyAccessorsIntoJson', ko.ex
             }
         },
 
-        prepend: function(containerNode, nodeToPrepend) {
+        prepend: function (containerNode, nodeToPrepend) {
             if (!isStartComment(containerNode)) {
                 if (containerNode.firstChild)
                     containerNode.insertBefore(nodeToPrepend, containerNode.firstChild);
@@ -2789,7 +2789,7 @@ ko.exportSymbol('jsonExpressionRewriting.insertPropertyAccessorsIntoJson', ko.ex
             }
         },
 
-        insertAfter: function(containerNode, nodeToInsert, insertAfterNode) {
+        insertAfter: function (containerNode, nodeToInsert, insertAfterNode) {
             if (!insertAfterNode) {
                 ko.virtualElements.prepend(containerNode, nodeToInsert);
             } else if (!isStartComment(containerNode)) {
@@ -2833,7 +2833,7 @@ ko.exportSymbol('jsonExpressionRewriting.insertPropertyAccessorsIntoJson', ko.ex
             // that are direct descendants of <ul> into the preceding <li>)
             if (!htmlTagsWithOptionallyClosingChildren[ko.utils.tagNameLower(elementVerified)])
                 return;
-
+            
             // Scan immediate children to see if they contain unbalanced comment tags. If they do, those comment tags
             // must be intended to appear *after* that child, so move them there.
             var childNode = elementVerified.firstChild;
@@ -2884,13 +2884,13 @@ ko.exportSymbol('virtualElements.setDomNodeChildren', ko.virtualElements.setDomN
             }
         },
 
-        'getBindings': function(node, bindingContext) {
+        'getBindings': function (node, bindingContext) {
             var bindingsString = this['getBindingsString'](node, bindingContext),
                 parsedBindings = bindingsString ? this['parseBindingsString'](bindingsString, bindingContext, node) : null;
             return ko.components.addBindingsForCustomElement(parsedBindings, node, bindingContext, /* valueAccessors */ false);
         },
 
-        'getBindingAccessors': function(node, bindingContext) {
+        'getBindingAccessors': function (node, bindingContext) {
             var bindingsString = this['getBindingsString'](node, bindingContext),
                 parsedBindings = bindingsString ? this['parseBindingsString'](bindingsString, bindingContext, node, { 'valueAccessors': true }) : null;
             return ko.components.addBindingsForCustomElement(parsedBindings, node, bindingContext, /* valueAccessors */ true);
@@ -3241,7 +3241,8 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
             // Get the binding from the provider within a computed observable so that we can update the bindings whenever
             // the binding context is updated or if the binding provider accesses observables.
             var bindingsUpdater = ko.dependentObservable(
-                function() {
+                function () {
+                    debugger;
                     bindings = sourceBindings ? sourceBindings(bindingContext, node) : getBindings.call(provider, node, bindingContext);
                     // Register a dependency on the binding context to support observable view models.
                     if (bindings && bindingContext._subscribable)
@@ -3285,13 +3286,13 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
             var orderedBindings = topologicalSortBindings(bindings);
 
             // Go through the sorted bindings, calling init and update for each
-            ko.utils.arrayForEach(orderedBindings, function(bindingKeyAndHandler) {
+            ko.utils.arrayForEach(orderedBindings, function (bindingKeyAndHandler) {
                 // Note that topologicalSortBindings has already filtered out any nonexistent binding handlers,
                 // so bindingKeyAndHandler.handler will always be nonnull.
                 var handlerInitFn = bindingKeyAndHandler.handler["init"],
                     handlerUpdateFn = bindingKeyAndHandler.handler["update"],
                     bindingKey = bindingKeyAndHandler.key;
-
+                
                 if (node.nodeType === 8) {
                     validateThatBindingIsAllowedForVirtualElements(bindingKey);
                 }
@@ -3314,7 +3315,7 @@ ko.exportSymbol('bindingProvider', ko.bindingProvider);
                     // Run update in its own computed wrapper
                     if (typeof handlerUpdateFn == "function") {
                         ko.dependentObservable(
-                            function() {
+                            function () {
                                 handlerUpdateFn(node, getValueAccessor(bindingKey), allBindings, bindingContext['$data'], bindingContext);
                             },
                             null,
@@ -5344,7 +5345,7 @@ ko.exportSymbol('__tr_ambtns', ko.templateRewriting.applyMemoizedBindingsToNextS
         // Since setDomNodeChildrenFromArrayMapping always calls executeTemplateForArrayItem and then
         // activateBindingsCallback for added items, we can store the binding context in the former to use in the latter.
         var arrayItemContext;
-
+        
         // This will be called by setDomNodeChildrenFromArrayMapping to get the nodes to add to targetNode
         var executeTemplateForArrayItem = function (arrayValue, index) {
             // Support selecting template as a function of the data being rendered

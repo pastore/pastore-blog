@@ -59,7 +59,7 @@ namespace Pastore.Data.Infrastructure
         }
         public virtual IEnumerable<T> GetAll()
         {
-            return dbset.ToList();
+            return dbset.AsNoTracking().ToList();
         }
 
         public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)

@@ -156,6 +156,7 @@
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleFIle.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Fighter.cs" />
     <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

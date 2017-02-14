@@ -20,14 +20,16 @@ namespace Pastore.Data.Migrations
         protected override void Seed(Pastore.Data.DataContext.DataBaseContext context)
         {
             var userStore = new UserStore<ApplicationUser>(context);
-            var userManager = new UserManager<ApplicationUser>(userStore);
-            userManager.PasswordValidator = new PasswordValidator()
+            var userManager = new UserManager<ApplicationUser>(userStore)
             {
-                RequiredLength = 4,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = false,
-                RequireLowercase = false,
-                RequireUppercase = false
+                PasswordValidator = new PasswordValidator()
+                {
+                    RequiredLength = 4,
+                    RequireNonLetterOrDigit = false,
+                    RequireDigit = false,
+                    RequireLowercase = false,
+                    RequireUppercase = false
+                }
             };
 
             var roleStore = new RoleStore<IdentityRole>(context);
