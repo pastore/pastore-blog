@@ -19,3 +19,25 @@ D:\Proects\Pastore\Pastore.Data\bin\Debug\x86\ClearScriptV8-32.dll
 D:\Proects\Pastore\Pastore.Data\bin\Debug\x86\v8-ia32.dll
 D:\Proects\Pastore\Pastore.Data\bin\Debug\x64\ClearScriptV8-64.dll
 D:\Proects\Pastore\Pastore.Data\bin\Debug\x64\v8-x64.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\x86\ClearScriptV8-32.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\x86\v8-ia32.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\x64\ClearScriptV8-64.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\x64\v8-x64.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\ApplicationInsights.config
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Pastore.Data.dll.config
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Pastore.Data.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Pastore.Data.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\EntityFramework.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Pastore.Model.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Pastore.Model.pdb
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Pastore.Model.dll.config
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\EntityFramework.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\obj\Debug\Pastore.Data.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\obj\Debug\Pastore.Data.dll
+C:\Users\User\Documents\Visual Studio 2017\Projects\pastore-blog\Pastore.Data\obj\Debug\Pastore.Data.pdb

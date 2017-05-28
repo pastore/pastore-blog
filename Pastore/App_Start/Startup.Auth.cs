@@ -67,7 +67,7 @@ namespace Pastore
                 ClientSecret = "dq_BPtj7VPOn2IYbqbyKu_5T"
             });
 
-            //app.UseVKontakteAuthentication("", "");
+            app.UseVKontakteAuthentication("6050921", "ROtFd0OdGrtfVVsL9qUM");
         }
     }
 }
