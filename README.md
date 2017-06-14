@@ -1,5 +1,5 @@
 # pastore-blog
-This is test project.
+This is test ASP.NET MVC project.
 Applied : 
   3 tier architecture ,
   pattern unit of work,
